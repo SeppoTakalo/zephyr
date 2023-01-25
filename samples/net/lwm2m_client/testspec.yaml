@@ -1,0 +1,6 @@
+sample:
+  name: LwM2M sample
+tests:
+  sample.net.lwm2m:
+    tags: lwm2m
+    min_ram: 40
