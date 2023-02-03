@@ -26,6 +26,7 @@
  *
  */
 
+#include <stdio.h>
 #include <soc.h>
 #include "hw_models_top.h"
 #include <stdlib.h>
@@ -57,6 +58,10 @@ void posix_exit(int exit_code)
  */
 void posix_init(int argc, char *argv[])
 {
+	/* Set output to line-buffered even when it is a pipe */
+	setvbuf(stdout, NULL, _IOLBF, 0);
+	setvbuf(stderr, NULL, _IOLBF, 0);
+
 	run_native_tasks(_NATIVE_PRE_BOOT_1_LEVEL);
 
 	native_handle_cmd_line(argc, argv);
