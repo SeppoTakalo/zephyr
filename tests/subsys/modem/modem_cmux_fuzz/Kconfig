@@ -1,0 +1,15 @@
+# Copyright (c) 2017 Intel Corporation
+# SPDX-License-Identifier: Apache-2.0
+
+config ARCH_POSIX_FUZZ_IRQ
+	int "OS interrupt via which to deliver fuzz cases"
+	default 31
+
+config ARCH_POSIX_FUZZ_TICKS
+	int "Ticks to allow for fuzz case processing"
+	default 10
+
+config CUSTOM_MUTATOR
+	bool "Use custom CMUX mutator"
+
+source "Kconfig.zephyr"
