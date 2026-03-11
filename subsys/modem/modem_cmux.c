@@ -498,19 +498,19 @@ static void modem_cmux_bus_callback(struct modem_pipe *pipe, enum modem_pipe_eve
 
 	switch (event) {
 	case MODEM_PIPE_EVENT_RECEIVE_READY:
-		modem_work_schedule(&cmux->receive_work, K_NO_WAIT);
+		modem_work_reschedule(&cmux->receive_work, K_TICKS(1));
 		break;
 
 	case MODEM_PIPE_EVENT_OPENED:
 		cmux->receive_state = MODEM_CMUX_RECEIVE_STATE_SOF;
-		modem_work_schedule(&cmux->transmit_work, K_NO_WAIT);
+		modem_work_reschedule(&cmux->transmit_work, K_TICKS(1));
 		break;
 	case MODEM_PIPE_EVENT_TRANSMIT_IDLE:
 		/* If we keep UART open in power-save, we should avoid waking up on RX idle */
 		if (!cmux->config.close_pipe_on_power_save && is_powersaving(cmux)) {
 			break;
 		}
-		modem_work_schedule(&cmux->transmit_work, K_NO_WAIT);
+		modem_work_reschedule(&cmux->transmit_work, K_TICKS(1));
 		break;
 	default:
 		break;
