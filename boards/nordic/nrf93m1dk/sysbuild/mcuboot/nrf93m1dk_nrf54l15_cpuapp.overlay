@@ -1,0 +1,18 @@
+/*
+ * Copyright (c) 2026 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/*
+ * MCUboot uses only internal RRAM for boot slots. Disable the external SPI NOR
+ * flash so that the SPI driver (which requires kernel threading primitives) is
+ * not compiled into the bootloader image.
+ */
+&spi00 {
+	status = "disabled";
+
+	mx25r64: mx25r6435f@0 {
+		status = "disabled";
+	};
+};
