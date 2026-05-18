@@ -1,0 +1,7 @@
+- scenarios:
+    - tf-m.regression.ipc.lvl1
+    - tf-m.regression.ipc.lvl2
+    - tf-m.regression.sfn
+  comment: "Link to the issue: https://github.com/zephyrproject-rtos/zephyr/issues/108566"
+  platforms:
+    - .*\/nrf54l15\/cpuapp\/ns
